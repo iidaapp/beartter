@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocketDemo Client</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script type="text/javascript">
+            WebSocketDemo = {};
+            (function(d) {
+                function $(query) {
+                    return document.querySelector(query);
+                }
+                function printMessage(msg) {
+                    $("#msgbox").innerHTML += "<div>" + msg + "</div>";
+                }
+                d.connect = function() {
+                    var ws = new WebSocket("ws://localhost:8082/beartter/wsdemo");
+                    ws.onmessage = function(event) {
+                        printMessage("Server : " + event.data);
+                    };
+                    d.webSocket = ws;
+                    $("#connect").disabled = true;
+                    $("#send").disabled = false;
+                };
+                d.send = function() {
+                    var msg = $("#msg").value;
+                    d.webSocket.send(msg);
+                    printMessage("Client : " + msg);
+                };
+            }) (WebSocketDemo);
+        </script>
+        <form action="javascript:void(0);">
+            <input type="text" id="msg" size="20"> 
+            <input type="button" id="connect" value="Connect" onclick="WebSocketDemo.connect();">
+            <input type="button" id="send" value="Send" onclick="WebSocketDemo.send();" disabled>
+        </form>
+        <div id="msgbox" style="border-style: solid;width: 500px;height: 400px"></div>
+    </body>
+</html>
