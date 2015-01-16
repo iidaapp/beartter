@@ -3,7 +3,6 @@ package com.iidaapp.beartter_demo.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import twitter4j.auth.AccessToken;
 
 import com.iidaapp.beartter_demo.util.BeartterProperties;
 
-@WebServlet(name = "signUpServlet", urlPatterns = "/signup")
 public class SignUpServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(SignUpServlet.class);

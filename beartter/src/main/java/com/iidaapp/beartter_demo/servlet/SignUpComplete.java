@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,6 @@ import com.iidaapp.beartter_demo.util.BeartterProperties;
 import com.iidaapp.beartter_demo.util.BeartterUtils;
 import com.iidaapp.beartter_demo.util.SignUpForm;
 
-@WebServlet(name = "signUpComplete", urlPatterns = "/complete")
 public class SignUpComplete extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(SignUpComplete.class);

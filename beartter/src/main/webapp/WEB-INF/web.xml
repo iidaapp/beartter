@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="idvalue0" metadata-complete="true" version="3.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd http://www.w3.org/XML/1998/namespace http://www.w3.org/2001/xml.xsd ">
+	<welcome-file-list>
+		<welcome-file>page/Top.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/page/error/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/page/error/500.html</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error</location>
+	</error-page>
+
+	<!-- Servlet -->
+	<servlet>
+		<servlet-name>twitterCallbackServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.CallbackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>twitterCallbackServlet</servlet-name>
+		<url-pattern>/callback</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>errorServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.ErrorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>errorServlet</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getFriendshipServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.GetFriendshipServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getFriendshipServlet</servlet-name>
+		<url-pattern>/getfriendship</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getProfileServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.GetProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getProfileServlet</servlet-name>
+		<url-pattern>/getprofile</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>limitServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.LimitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>limitServlet</servlet-name>
+		<url-pattern>/limit</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logoutComplete</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.LogoutComplete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logoutComplete</servlet-name>
+		<url-pattern>/logoutcomplete</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logoutServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logoutServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>mainServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.MainServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mainServlet</servlet-name>
+		<url-pattern>/main</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>secedeServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SecedeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>secedeServlet</servlet-name>
+		<url-pattern>/secede</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>sendFollowServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SendFollowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sendFollowServlet</servlet-name>
+		<url-pattern>/sendfollow</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>sendRemoveServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SendRemoveServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sendRemoveServlet</servlet-name>
+		<url-pattern>/sendremove</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>settingsServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SettingsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>settingsServlet</servlet-name>
+		<url-pattern>/settings</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>signUpComplete</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SignUpComplete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>signUpComplete</servlet-name>
+		<url-pattern>/complete</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>signUpConfirm</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SignUpConfirm</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>signUpConfirm</servlet-name>
+		<url-pattern>/confirm</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>signUpServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.SignUpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>signUpServlet</servlet-name>
+		<url-pattern>/signup</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>tweetServlet</servlet-name>
+		<servlet-class>com.iidaapp.beartter_demo.servlet.TweetServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tweetServlet</servlet-name>
+		<url-pattern>/tweet</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -3,7 +3,6 @@ package com.iidaapp.beartter_demo.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +22,6 @@ import com.iidaapp.beartter_demo.util.BeartterProperties;
  * @author iida
  *
  */
-@WebServlet(name = "getFriendshipServlet", urlPatterns = { "/getfriendship" })
 public class GetFriendshipServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(GetFriendshipServlet.class);

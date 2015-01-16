@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,6 @@ import com.iidaapp.beartter_demo.util.BeartterProperties;
 import com.iidaapp.beartter_demo.util.BeartterUtils;
 import com.iidaapp.beartter_demo.util.ValidationUtils;
 
-@WebServlet(name = "secedeServlet", urlPatterns = "/secede")
 public class SecedeServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(SecedeServlet.class);
@@ -60,7 +58,7 @@ public class SecedeServlet extends HttpServlet {
 
 		// セッションが空の場合はエラー
 		HttpSession session = req.getSession(false);
-		if (session == null) {
+		if(session == null) {
 			log.error(BeartterProperties.MESSAGE_ERROR_NULL_SESSION);
 			try {
 				resp.sendRedirect("error");
@@ -73,7 +71,7 @@ public class SecedeServlet extends HttpServlet {
 
 		// beartterIdがNULLの場合はエラー
 		String beartterId = (String) session.getAttribute("beartterId");
-		if (StringUtils.isEmpty(beartterId)) {
+		if(StringUtils.isEmpty(beartterId)) {
 
 			log.error(BeartterProperties.MESSAGE_ERROR_NULL_BEARTTER_ID);
 			try {
@@ -89,7 +87,7 @@ public class SecedeServlet extends HttpServlet {
 		String passwordEncode = null;
 		String errorMessage = null;
 
-		if (StringUtils.isEmpty(password)) {
+		if(StringUtils.isEmpty(password)) {
 			// error
 			errorMessage = BeartterProperties.MESSAGE_ERROR_SECEDE_NULL_PASSWORD;
 			req.setAttribute("errorMessage", errorMessage);
@@ -113,7 +111,7 @@ public class SecedeServlet extends HttpServlet {
 			return;
 		}
 
-		if (!ValidationUtils.isCorrectPassword(password)) {
+		if(!ValidationUtils.isCorrectPassword(password)) {
 			// error
 			errorMessage = BeartterProperties.MESSAGE_ERROR_SECEDE_NOT_CORRECT_PASSWORD;
 			req.setAttribute("errorMessage", errorMessage);
@@ -151,7 +149,7 @@ public class SecedeServlet extends HttpServlet {
 			}
 		}
 
-		if (StringUtils.isEmpty(passwordUserinfo)) {
+		if(StringUtils.isEmpty(passwordUserinfo)) {
 			// error
 			throw new RuntimeException();
 		}
@@ -168,8 +166,8 @@ public class SecedeServlet extends HttpServlet {
 				return;
 			}
 		}
-		
-		if(!passwordUserinfo.equals(passwordEncode)){
+
+		if(!passwordUserinfo.equals(passwordEncode)) {
 			// error
 			errorMessage = BeartterProperties.MESSAGE_ERROR_SECEDE_NOT_SAME_PASSWORD;
 			req.setAttribute("errorMessage", errorMessage);

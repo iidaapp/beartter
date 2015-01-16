@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,6 @@ import twitter4j.TwitterException;
 
 import com.iidaapp.beartter_demo.util.TweetAnalysisUtil;
 
-@WebServlet(name = "tweetServlet", urlPatterns = "/tweet")
 public class TweetServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(TweetServlet.class);

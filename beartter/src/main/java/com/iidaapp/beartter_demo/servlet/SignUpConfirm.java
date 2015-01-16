@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.iidaapp.beartter_demo.util.BeartterProperties;
-import com.iidaapp.beartter_demo.util.ValidationUtils;
 import com.iidaapp.beartter_demo.util.SignUpForm;
 import com.iidaapp.beartter_demo.util.SignUpFormValidateResults;
+import com.iidaapp.beartter_demo.util.ValidationUtils;
 
-@WebServlet(name = "signUpConfirm", urlPatterns = "/confirm")
 public class SignUpConfirm extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(SignUpConfirm.class);

@@ -2,11 +2,8 @@ package com.iidaapp.beartter_demo.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import twitter4j.Paging;
-import twitter4j.ResponseList;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-
 import com.iidaapp.beartter_demo.util.BeartterProperties;
 import com.iidaapp.beartter_demo.util.BeartterUtils;
 
@@ -30,7 +21,6 @@ import com.iidaapp.beartter_demo.util.BeartterUtils;
  * @author iida
  *
  */
-@WebServlet(name = "mainServlet", urlPatterns = "/main")
 public class MainServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(MainServlet.class);
@@ -83,53 +73,6 @@ public class MainServlet extends HttpServlet {
 			}
 		}
 
-		/*		// Paging設定
-		String pagingNoString = req.getParameter("paging");
-		if (pagingNoString == null)
-			pagingNoString = "1";
-		Integer pagingNo = Integer.parseInt(pagingNoString);
-
-		Paging paging = new Paging(pagingNo);
-
-		List<ResponseList<Status>> statusList = new ArrayList<ResponseList<Status>>();
-		Twitter twitter = (Twitter) session.getAttribute("Twitter");
-
-		try {
-			statusList.add(twitter.getHomeTimeline(paging));
-		} catch (TwitterException e) {
-
-			log.error(e.toString());
-
-			// API制限エラー。専用ページヘ遷移。
-			if (e.getErrorCode() == 88) {
-				int secondsUntilReset = e.getRateLimitStatus().getSecondsUntilReset();
-				session.setAttribute("secondsUntilReset", secondsUntilReset);
-				try {
-					resp.sendRedirect("limit");
-				} catch (IOException e1) {
-					log.error(e1.toString());
-					return;
-				}
-				return;
-			}
-
-			try {
-				resp.sendRedirect("error");
-				return;
-			} catch (IOException e1) {
-				log.error(e1.toString());
-				return;
-			}
-		}
-
-		// TODO ストリームによるTLの取得処理の実装
-
-		// try {
-		// TestStream.testStream(beartterId);
-		// } catch (SQLException e) {
-		// e.printStackTrace();
-		// }
-
 		String characterName = null;
 
 		try {
@@ -155,12 +98,9 @@ public class MainServlet extends HttpServlet {
 		}
 
 		// 各情報のセット
-		req.setAttribute("statusList", statusList);
 		req.setAttribute("newLine", "\n");
-		session.setAttribute("pagingNo", pagingNo);
-		session.setAttribute("twitter", twitter);
 		session.setAttribute("characterName", characterName);
-*/
+
 		// 遷移
 		try {
 			req.getRequestDispatcher("/Streaming.jsp").forward(req, resp);

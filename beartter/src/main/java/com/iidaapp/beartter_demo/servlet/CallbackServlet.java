@@ -3,7 +3,6 @@ package com.iidaapp.beartter_demo.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +26,7 @@ import com.iidaapp.beartter_demo.util.BeartterProperties;
  * @author iida
  *
  */
-@WebServlet(name = "twitterCallbackServlet", urlPatterns = "/callback")
+
 public class CallbackServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(CallbackServlet.class);
@@ -75,6 +74,15 @@ public class CallbackServlet extends HttpServlet {
 		// アクセストークンの取得
 		AccessToken accessToken = null;
 
+		if(twitter == null || requestToken == null || verifier == null){
+			log.error(BeartterProperties.MESSAGE_ERROR_NULL_SESSION);
+			try {
+				resp.sendRedirect("error");
+			} catch (IOException e1) {
+				log.error(e1.toString(), e1);
+			}
+			return;
+		}
 		try {
 			accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
 		} catch (TwitterException e) {

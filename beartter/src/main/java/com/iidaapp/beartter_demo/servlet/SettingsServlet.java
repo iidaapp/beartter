@@ -3,7 +3,6 @@ package com.iidaapp.beartter_demo.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import com.iidaapp.beartter_demo.util.BeartterProperties;
 
-@WebServlet(name = "settingsServlet", urlPatterns = "/settings")
 public class SettingsServlet extends HttpServlet {
 
 	private static Logger log = LoggerFactory.getLogger(SettingsServlet.class);
