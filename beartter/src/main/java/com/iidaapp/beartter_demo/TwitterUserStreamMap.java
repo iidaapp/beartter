@@ -9,9 +9,10 @@ public class TwitterUserStreamMap {
 
 	public static ConcurrentMap<String, TwitterUserStream> userStreamMap;
 
-	static{
+	static {
 		userStreamMap = new ConcurrentHashMap<String, TwitterUserStream>();
 	}
+
 
 	public static void add(String beartterId, Session session) throws Exception {
 
@@ -22,8 +23,11 @@ public class TwitterUserStreamMap {
 
 	public static void remove(String beartterId) {
 
-		userStreamMap.get(beartterId).shutdownStream();
-		userStreamMap.remove(beartterId);
+		// TODO Mapに存在する場合のみ操作、でいいか検証
+		if(userStreamMap.containsKey(beartterId)) {
+			userStreamMap.get(beartterId).shutdownStream();
+			userStreamMap.remove(beartterId);
+		}
 
 	}
 

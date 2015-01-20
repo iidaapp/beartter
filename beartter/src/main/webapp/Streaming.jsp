@@ -1,4 +1,6 @@
 <%@page language="java" contentType="text/html" pageEncoding="utf-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,11 @@
 	</h2>
 	<TABLE BORDER="1" ID="TBL">
 	</TABLE>
+	<a href="page/Top.jsp">test</a>
+${sessionScope.beartterId}
 </body>
+<c:if test="${empty sessionScope.beartterId}"><c:redirect url="/" />
+</c:if>
 <script type="text/javascript">
 	var wsUri = "ws://127.0.0.1:8082/beartter/streamdemo";
 	var websocket = new WebSocket(wsUri);

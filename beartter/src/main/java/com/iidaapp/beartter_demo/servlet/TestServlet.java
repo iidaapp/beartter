@@ -11,10 +11,15 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.iidaapp.beartter_demo.util.BeartterProperties;
 import com.iidaapp.beartter_demo.util.BeartterUtils;
 
 public class TestServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 381513549098445934L;
+
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
