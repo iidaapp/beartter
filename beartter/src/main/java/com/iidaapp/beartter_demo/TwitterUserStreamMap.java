@@ -5,6 +5,8 @@ import java.util.concurrent.ConcurrentMap;
 
 import javax.websocket.Session;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class TwitterUserStreamMap {
 
 	public static ConcurrentMap<String, TwitterUserStream> userStreamMap;
@@ -22,6 +24,11 @@ public class TwitterUserStreamMap {
 
 
 	public static void remove(String beartterId) {
+
+		if(StringUtils.isEmpty(beartterId)) {
+			System.out.println("beartterId is null");
+			return;
+		}
 
 		// TODO Mapに存在する場合のみ操作、でいいか検証
 		if(userStreamMap.containsKey(beartterId)) {

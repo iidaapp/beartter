@@ -40,9 +40,9 @@ public class TwitterUserStream extends UserStreamAdapter {
 		AccessTokenEntity entity = entityList.get(0);
 		AccessToken accessToken = new AccessToken(entity.getoAuthToken(), entity.getoAuthSecret());
 		twitterStream = new TwitterStreamFactory().getInstance(accessToken);
-		
+
 		StatusListener listner = new MyStreamAdapter();
-		
+
 		twitterStream.addListener(this);
 		twitterStream.user();
 
@@ -61,7 +61,6 @@ public class TwitterUserStream extends UserStreamAdapter {
 				System.out.println(resStr);
 
 				session.getBasicRemote().sendText(resStr);
-				// sendString(resStr);
 			}
 
 		} catch (IOException ioe) {
@@ -73,45 +72,44 @@ public class TwitterUserStream extends UserStreamAdapter {
 
 	public void shutdownStream() {
 
+		twitterStream.removeListener(this);
 		twitterStream.shutdown();
 
 	}
 }
 
+// イベントを受け取るリスナーオブジェクト
+class MyStreamAdapter extends UserStreamAdapter {
 
-//イベントを受け取るリスナーオブジェクト
-class MyStreamAdapter extends UserStreamAdapter{
+	public void onException(Exception e) {
+		e.printStackTrace();
 
-		public void onException(Exception e) {
-			e.printStackTrace();
+	}
 
-		}
 
-		public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-			System.out.println("Got track limitation notice:"
-					+ numberOfLimitedStatuses);
-		}
+	public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
+		System.out.println("Got track limitation notice:" + numberOfLimitedStatuses);
+	}
 
-		public void onStatus(Status status) {
 
-			System.out.println("@" + status.getUser().getScreenName()
-					+ " - " + status.getText());
-		}
+	public void onStatus(Status status) {
 
-		public void onStallWarning(StallWarning warning) {
-			System.out.println("Got stall warning:" + warning);
+		System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+	}
 
-		}
 
-		public void onScrubGeo(long userId, long upToStatusId) {
-			System.out.println("Got scrub_geo event userId:" + userId
-					+ " upToStatusId:" + upToStatusId);
-		}
+	public void onStallWarning(StallWarning warning) {
+		System.out.println("Got stall warning:" + warning);
 
-		public void onDeletionNotice(
-				StatusDeletionNotice statusDeletionNotice) {
-			System.out.println("Got a status deletion notice id:"
-					+ statusDeletionNotice.getStatusId());
-		}
+	}
+
+
+	public void onScrubGeo(long userId, long upToStatusId) {
+		System.out.println("Got scrub_geo event userId:" + userId + " upToStatusId:" + upToStatusId);
+	}
+
+
+	public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
+		System.out.println("Got a status deletion notice id:" + statusDeletionNotice.getStatusId());
+	}
 }
-

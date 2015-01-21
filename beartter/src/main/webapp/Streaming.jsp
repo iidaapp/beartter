@@ -44,8 +44,9 @@ ${sessionScope.beartterId}
 	}
 
 	function onMessage(evt) {
-		writeToScreen(evt.data);
-		numberOfMessage++;
+		if(evt.data == "null"){
+			onError(evt);
+		}
 	}
 
 	function onError(evt) {

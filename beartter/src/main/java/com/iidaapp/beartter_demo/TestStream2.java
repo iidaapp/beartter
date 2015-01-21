@@ -27,14 +27,20 @@ public class TestStream2 {
 		HttpSession httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
 		System.out.println("http session is " + httpSession);
 
+		if(httpSession == null) {
+			session.getAsyncRemote().sendText("null");
+			return;
+		}
+
 		String beartterId = (String) httpSession.getAttribute("beartterId");
 
 		if(StringUtils.isEmpty(beartterId)) {
 			System.out.println("beartterid is null");
-			throw new Exception();
+			return;
 		}
 
 		TwitterUserStreamMap.add(beartterId, session);
+		httpSession.removeAttribute(beartterId);
 	}
 
 
@@ -60,6 +66,7 @@ public class TestStream2 {
 
 		if(StringUtils.isEmpty(beartterId)) {
 			// TODO エラー処理
+			System.out.println("beartterid is null");
 			return;
 		}
 		TwitterUserStreamMap.remove(beartterId);
@@ -71,7 +78,7 @@ public class TestStream2 {
 	public void onError(Session session, Throwable t) throws Exception {
 
 		System.out.println("onError now");
-		
+
 		System.out.println(t.getMessage());
 
 	}
