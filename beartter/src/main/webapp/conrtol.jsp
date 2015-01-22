@@ -1,4 +1,4 @@
-<%@page import="com.iidaapp.beartter_demo.TestWebServlet"%>
+<%@page import="com.iidaapp.beartter.TestWebServlet"%>
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <%
