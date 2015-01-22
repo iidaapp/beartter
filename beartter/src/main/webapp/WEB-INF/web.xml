@@ -27,7 +27,7 @@
 	<!-- Servlet -->
 	<servlet>
 		<servlet-name>twitterCallbackServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.CallbackServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.CallbackServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>twitterCallbackServlet</servlet-name>
@@ -36,7 +36,7 @@
 
 	<servlet>
 		<servlet-name>errorServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.ErrorServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.ErrorServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>errorServlet</servlet-name>
@@ -45,7 +45,7 @@
 
 	<servlet>
 		<servlet-name>getFriendshipServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.GetFriendshipServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.GetFriendshipServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>getFriendshipServlet</servlet-name>
@@ -54,7 +54,7 @@
 
 	<servlet>
 		<servlet-name>getProfileServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.GetProfileServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.GetProfileServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>getProfileServlet</servlet-name>
@@ -63,7 +63,7 @@
 
 	<servlet>
 		<servlet-name>limitServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.LimitServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.LimitServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>limitServlet</servlet-name>
@@ -72,7 +72,7 @@
 
 	<servlet>
 		<servlet-name>loginServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.LoginServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>loginServlet</servlet-name>
@@ -81,7 +81,7 @@
 
 	<servlet>
 		<servlet-name>logoutComplete</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.LogoutComplete</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.LogoutComplete</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>logoutComplete</servlet-name>
@@ -90,7 +90,7 @@
 
 	<servlet>
 		<servlet-name>logoutServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.LogoutServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.LogoutServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>logoutServlet</servlet-name>
@@ -99,7 +99,7 @@
 
 	<servlet>
 		<servlet-name>mainServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.MainServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.MainServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>mainServlet</servlet-name>
@@ -108,7 +108,7 @@
 
 	<servlet>
 		<servlet-name>secedeServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SecedeServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SecedeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>secedeServlet</servlet-name>
@@ -117,7 +117,7 @@
 
 	<servlet>
 		<servlet-name>sendFollowServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SendFollowServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SendFollowServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>sendFollowServlet</servlet-name>
@@ -126,7 +126,7 @@
 
 	<servlet>
 		<servlet-name>sendRemoveServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SendRemoveServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SendRemoveServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>sendRemoveServlet</servlet-name>
@@ -135,7 +135,7 @@
 
 	<servlet>
 		<servlet-name>settingsServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SettingsServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SettingsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>settingsServlet</servlet-name>
@@ -144,7 +144,7 @@
 
 	<servlet>
 		<servlet-name>signUpComplete</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SignUpComplete</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SignUpComplete</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>signUpComplete</servlet-name>
@@ -153,7 +153,7 @@
 
 	<servlet>
 		<servlet-name>signUpConfirm</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SignUpConfirm</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SignUpConfirm</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>signUpConfirm</servlet-name>
@@ -162,7 +162,7 @@
 
 	<servlet>
 		<servlet-name>signUpServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.SignUpServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.SignUpServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>signUpServlet</servlet-name>
@@ -171,7 +171,7 @@
 
 	<servlet>
 		<servlet-name>tweetServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.TweetServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.TweetServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>tweetServlet</servlet-name>
@@ -180,7 +180,7 @@
 
 	<servlet>
 		<servlet-name>testServlet</servlet-name>
-		<servlet-class>com.iidaapp.beartter_demo.servlet.TestServlet</servlet-class>
+		<servlet-class>com.iidaapp.beartter.servlet.TestServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>testServlet</servlet-name>

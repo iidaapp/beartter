@@ -6,27 +6,33 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.websocket.EncodeException;
 import javax.websocket.Session;
 
-import twitter4j.StallWarning;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
-import twitter4j.StatusListener;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.User;
 import twitter4j.UserStreamAdapter;
 import twitter4j.auth.AccessToken;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iidaapp.beartter.db.DbUtils;
 import com.iidaapp.beartter.entity.AccessTokenEntity;
+import com.iidaapp.beartter.entity.TweetStatus;
 
 public class TwitterUserStream extends UserStreamAdapter {
 
 	private static TwitterStream twitterStream = null;
 	public static Set<Session> sessions = null;
+	private static Logger log = LoggerFactory.getLogger(TwitterUserStream.class);
 
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public TwitterUserStream(String beartterId, Session session) throws Exception {
 
 		sessions = Collections.synchronizedSet(new HashSet());
@@ -40,8 +46,6 @@ public class TwitterUserStream extends UserStreamAdapter {
 		AccessTokenEntity entity = entityList.get(0);
 		AccessToken accessToken = new AccessToken(entity.getoAuthToken(), entity.getoAuthSecret());
 		twitterStream = new TwitterStreamFactory().getInstance(accessToken);
-
-		StatusListener listner = new MyStreamAdapter();
 
 		twitterStream.addListener(this);
 		twitterStream.user();
@@ -58,15 +62,33 @@ public class TwitterUserStream extends UserStreamAdapter {
 				// TODO statusを適切な形にして返す
 				User user = status.getUser();
 				String resStr = "@" + user.getScreenName() + " : " + status.getText();
+
 				System.out.println(resStr);
 
-				session.getBasicRemote().sendText(resStr);
+				TweetStatus tweetStatus = new TweetStatus(status);
+				ObjectMapper mapper = new ObjectMapper();
+				String json = mapper.writeValueAsString(tweetStatus);
+
+				System.out.println(json);
+//				session.getBasicRemote().sendObject(json);
 			}
 
-		} catch (IOException ioe) {
-			// TODO Auto-generated catch block
-			ioe.printStackTrace();
-		}
+		} catch (IOException e) {
+
+			log.error(e.getMessage());
+			shutdownStream();
+
+		} /*catch (EncodeException e) {
+
+			log.error(e.getMessage());
+			shutdownStream();
+		}*/
+	}
+
+
+	@Override
+	public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
+
 	}
 
 
@@ -75,41 +97,5 @@ public class TwitterUserStream extends UserStreamAdapter {
 		twitterStream.removeListener(this);
 		twitterStream.shutdown();
 
-	}
-}
-
-// イベントを受け取るリスナーオブジェクト
-class MyStreamAdapter extends UserStreamAdapter {
-
-	public void onException(Exception e) {
-		e.printStackTrace();
-
-	}
-
-
-	public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-		System.out.println("Got track limitation notice:" + numberOfLimitedStatuses);
-	}
-
-
-	public void onStatus(Status status) {
-
-		System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-	}
-
-
-	public void onStallWarning(StallWarning warning) {
-		System.out.println("Got stall warning:" + warning);
-
-	}
-
-
-	public void onScrubGeo(long userId, long upToStatusId) {
-		System.out.println("Got scrub_geo event userId:" + userId + " upToStatusId:" + upToStatusId);
-	}
-
-
-	public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
-		System.out.println("Got a status deletion notice id:" + statusDeletionNotice.getStatusId());
 	}
 }

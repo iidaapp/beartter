@@ -47,6 +47,7 @@ ${sessionScope.beartterId}
 		if(evt.data == "null"){
 			onError(evt);
 		}
+		writeToScreen(evt);
 	}
 
 	function onError(evt) {

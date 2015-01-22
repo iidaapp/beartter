@@ -43,7 +43,7 @@ public class TestServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 
 		String characterName = null;
-		String beartterId = "iidaapp";
+		String beartterId = "testbeartter";
 		
 		session.setAttribute("beartterId", beartterId);
 

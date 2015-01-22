@@ -30,7 +30,6 @@ public class TwitterUserStreamMap {
 			return;
 		}
 
-		// TODO Mapに存在する場合のみ操作、でいいか検証
 		if(userStreamMap.containsKey(beartterId)) {
 			userStreamMap.get(beartterId).shutdownStream();
 			userStreamMap.remove(beartterId);
