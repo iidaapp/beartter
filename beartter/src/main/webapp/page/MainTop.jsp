@@ -15,7 +15,7 @@
 <script src="/beartter/staticcontents/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- mine -->
 <link href="/beartter/staticcontents/css/animate.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
 <script type="text/javascript" script-name="syncopate" src="http://use.edgefonts.net/syncopate.js"></script>
 <link rel="stylesheet" href="/beartter/staticcontents/css/main.css" type="text/css" />
 
@@ -25,37 +25,7 @@
 
 
 <title>Insert title here</title>
-<!--         <script type="text/javascript">
-            $(function(){
-                connect();
-                $("#btn").click(button)
-            });
-            /* 接続 */
-            function connect(){
-                $.ajax({
-                    url:"../polling", 
-                    type:"GET",
-                    data:{}, 
-                    complete: fin,
-                    success:pushed
-                });
-                
-            }
-            /* 投稿 */
-            function pushed(data, status, hxr){
-                $t = $("<div>").wrapInner(data);
-                $("#result").append($t);
-            }
-            /* 接続終了の再接続 */
-            function fin(hxr, status){
-                connect();
-            }
-            /* ボタンが押されたときの処理 */
-            function button(){
-                $.post("../push", {text: $("#txt").val()});
-                $("#txt").val("");
-            }
-        </script> -->
+
 </head>
 <body>
 

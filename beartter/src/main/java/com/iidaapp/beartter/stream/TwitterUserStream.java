@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.websocket.EncodeException;
 import javax.websocket.Session;
 
 import org.slf4j.Logger;
@@ -40,7 +39,7 @@ public class TwitterUserStream extends UserStreamAdapter {
 		sessions.add(session);
 		List<AccessTokenEntity> entityList = DbUtils.selectAccessTokenListFromAccessToken(beartterId);
 
-		if(entityList.size() == 0)
+		if (entityList.size() == 0)
 			throw new Exception();
 
 		AccessTokenEntity entity = entityList.get(0);
@@ -58,7 +57,7 @@ public class TwitterUserStream extends UserStreamAdapter {
 
 		try {
 
-			for(Session session : sessions) {
+			for (Session session : sessions) {
 				// TODO statusを適切な形にして返す
 				User user = status.getUser();
 				String resStr = "@" + user.getScreenName() + " : " + status.getText();
@@ -70,7 +69,7 @@ public class TwitterUserStream extends UserStreamAdapter {
 				String json = mapper.writeValueAsString(tweetStatus);
 
 				System.out.println(json);
-//				session.getBasicRemote().sendObject(json);
+				session.getBasicRemote().sendText(json);
 			}
 
 		} catch (IOException e) {
@@ -78,11 +77,7 @@ public class TwitterUserStream extends UserStreamAdapter {
 			log.error(e.getMessage());
 			shutdownStream();
 
-		} /*catch (EncodeException e) {
-
-			log.error(e.getMessage());
-			shutdownStream();
-		}*/
+		}
 	}
 
 

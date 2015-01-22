@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
@@ -47,19 +47,26 @@ ${sessionScope.beartterId}
 		if(evt.data == "null"){
 			onError(evt);
 		}
-		writeToScreen(evt);
+		
+		try{
+			var wsJson = $.parseJSON(evt.data);
+		}catch (e){
+			alert(e);
+			return;
+		}
+		writeToScreen(wsJson);
 	}
 
 	function onError(evt) {
 		writeToScreen('<span style="color: red;">ERROR</span>' + evt.data)
 	}
 
-	function writeToScreen(message) {
+	function writeToScreen(wsJson) {
 		var table = document.getElementById("TBL");
 		var row = table.insertRow(0);
 		var cell1 = row.insertCell(0);
 
-		var textNode = document.createTextNode(message);
+		var textNode = document.createTextNode(wsJson.text);
 
 		var z = numberOfMessage % 2;
 
