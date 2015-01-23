@@ -58,7 +58,7 @@ public class TwitterUserStream extends UserStreamAdapter {
 		try {
 
 			for (Session session : sessions) {
-				// TODO statusを適切な形にして返す
+
 				User user = status.getUser();
 				String resStr = "@" + user.getScreenName() + " : " + status.getText();
 
