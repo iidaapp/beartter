@@ -26,17 +26,14 @@ import com.iidaapp.beartter.entity.TweetStatus;
 
 public class TwitterUserStream extends UserStreamAdapter {
 
-	private static TwitterStream twitterStream = null;
-	public static Set<Session> sessions = null;
+	private TwitterStream twitterStream = null;
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Set<Session> sessions = Collections.synchronizedSet(new HashSet());
 	private static Logger log = LoggerFactory.getLogger(TwitterUserStream.class);
 
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public TwitterUserStream(String beartterId, Session session) throws Exception {
+	public TwitterUserStream(String beartterId) throws Exception {
 
-		sessions = Collections.synchronizedSet(new HashSet());
-
-		sessions.add(session);
 		List<AccessTokenEntity> entityList = DbUtils.selectAccessTokenListFromAccessToken(beartterId);
 
 		if (entityList.size() == 0)
@@ -92,5 +89,18 @@ public class TwitterUserStream extends UserStreamAdapter {
 		twitterStream.removeListener(this);
 		twitterStream.shutdown();
 
+	}
+	
+	public void addSession(Session session){
+		sessions.add(session);
+	}
+	
+	public void removeSession(Session session){
+		System.out.println("remove session" + session.toString());
+		sessions.remove(session);
+	}
+	
+	public int countSession(){
+		return sessions.size();
 	}
 }

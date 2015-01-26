@@ -40,6 +40,7 @@ public class WebSocketForUserStream {
 		}
 
 		TwitterUserStreamMap.add(beartterId, session);
+		httpSession.setAttribute("session", session);
 		httpSession.removeAttribute(beartterId);
 	}
 
@@ -55,7 +56,7 @@ public class WebSocketForUserStream {
 			return;
 
 		String beartterId = null;
-
+		System.out.println(beartterId);
 		try {
 			beartterId = (String) httpSession.getAttribute("beartterId");
 		} catch (IllegalStateException e) {
@@ -69,6 +70,7 @@ public class WebSocketForUserStream {
 			System.out.println("beartterid is null");
 			return;
 		}
+		TwitterUserStreamMap.userStreamMap.get(beartterId).removeSession(session);
 		TwitterUserStreamMap.remove(beartterId);
 
 	}

@@ -16,25 +16,44 @@ public class TwitterUserStreamMap {
 	}
 
 
-	public static void add(String beartterId, Session session) throws Exception {
+	public static void  add(String beartterId, Session session) throws Exception {
 
-		userStreamMap.putIfAbsent(beartterId, new TwitterUserStream(beartterId, session));
+		TwitterUserStream stream = null;
+		synchronized(userStreamMap) {
+		
+		if(userStreamMap.containsKey(beartterId)){
+			stream = userStreamMap.get(beartterId);
+			System.out.println(stream.toString());
+			System.out.println("うえ");
+		}else{
+			stream = new TwitterUserStream(beartterId);
+			userStreamMap.putIfAbsent(beartterId, stream);
+		System.out.println("した");}
 
+		stream.addSession(session);
+		}
 	}
 
 
 	public static void remove(String beartterId) {
 
+		
 		if(StringUtils.isEmpty(beartterId)) {
 			System.out.println("beartterId is null");
 			return;
 		}
-
+		synchronized(userStreamMap) {
+			
 		if(userStreamMap.containsKey(beartterId)) {
-			userStreamMap.get(beartterId).shutdownStream();
-			userStreamMap.remove(beartterId);
+			TwitterUserStream stream = userStreamMap.get(beartterId);
+			if(stream.countSession() == 0){
+				System.out.println("remove user stream map");
+				userStreamMap.get(beartterId).shutdownStream();
+				userStreamMap.remove(beartterId);
+			}
+			
 		}
-
+		}	
 	}
 
 }
