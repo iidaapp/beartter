@@ -1,5 +1,7 @@
 package com.iidaapp.beartter.stream;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
@@ -11,6 +13,9 @@ import javax.websocket.server.ServerEndpoint;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.iidaapp.beartter.db.DbUtils;
+import com.iidaapp.beartter.entity.AccessTokenEntity;
 
 @ServerEndpoint(value = "/streamdemo", configurator = DefaultConfigurator.class)
 public class WebSocketForUserStream {
@@ -39,7 +44,17 @@ public class WebSocketForUserStream {
 			return;
 		}
 
-		TwitterUserStreamMap.add(beartterId, session);
+		List<AccessTokenEntity> entityList = DbUtils.selectAccessTokenListFromAccessToken(beartterId);
+		
+		if(entityList == null){
+			onError(session, new Exception());
+			onClose(session);
+		}else if(entityList.size() == 0){
+			onError(session, new Exception());
+			onClose(session);
+		}
+ 
+		TwitterUserStreamMap.add(beartterId, entityList, session);
 		httpSession.setAttribute("session", session);
 		httpSession.removeAttribute(beartterId);
 	}
@@ -70,7 +85,12 @@ public class WebSocketForUserStream {
 			System.out.println("beartterid is null");
 			return;
 		}
-		TwitterUserStreamMap.userStreamMap.get(beartterId).removeSession(session);
+
+		List<AccessTokenEntity> entityList = DbUtils.selectAccessTokenListFromAccessToken(beartterId);
+
+		for (AccessTokenEntity entity : entityList){
+			TwitterUserStreamMap.userStreamMap.get(Long.toString(entity.getUserId())).removeSession(session);
+		}
 		TwitterUserStreamMap.remove(beartterId);
 
 	}

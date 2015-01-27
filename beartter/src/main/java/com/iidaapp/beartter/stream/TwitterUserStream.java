@@ -32,14 +32,8 @@ public class TwitterUserStream extends UserStreamAdapter {
 	private static Logger log = LoggerFactory.getLogger(TwitterUserStream.class);
 
 
-	public TwitterUserStream(String beartterId) throws Exception {
+	public TwitterUserStream(AccessTokenEntity entity) throws Exception {
 
-		List<AccessTokenEntity> entityList = DbUtils.selectAccessTokenListFromAccessToken(beartterId);
-
-		if (entityList.size() == 0)
-			throw new Exception();
-
-		AccessTokenEntity entity = entityList.get(0);
 		AccessToken accessToken = new AccessToken(entity.getoAuthToken(), entity.getoAuthSecret());
 		twitterStream = new TwitterStreamFactory().getInstance(accessToken);
 

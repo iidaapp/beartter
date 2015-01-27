@@ -16,7 +16,7 @@
 	<TABLE BORDER="1" ID="TBL">
 	</TABLE>
 	<a href="page/Top.jsp">test</a>
-	<input type="button" onclick="addWs()" />
+
 ${sessionScope.beartterId}
 </body>
 <c:if test="${empty sessionScope.beartterId}"><c:redirect url="/" />
@@ -79,9 +79,5 @@ ${sessionScope.beartterId}
 	}
 
 	window.addEventListener("load", init, false);
-	
-	addWs(){
-		
-	}
 </script>
 </html>
